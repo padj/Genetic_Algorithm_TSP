@@ -17,4 +17,4 @@ HOW TO:
   i. maximum_number_generations
   j. stagnation_criteria
 3. Run TSP_run.py
-4. Review outputs. 
+4. Review outputs.
