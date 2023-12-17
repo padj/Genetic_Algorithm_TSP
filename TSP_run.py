@@ -37,8 +37,8 @@ TSP.plotCitiesRoute(towns=towns, individual=pop[0], colour='b', figNum=0)
 
 elitism_rate = 0.1
 mutation_rate = 0.01
-maximum_number_generations = 1000
-stagnation_criteria = 100 # This represents the number of generations where
+maximum_number_generations = 10000
+stagnation_criteria = 500 # This represents the number of generations where
 # the best fitness of the population did not change in order to assume the 
 # algorithm has converged. 
 
