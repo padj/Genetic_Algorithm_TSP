@@ -161,11 +161,11 @@ def runGA(population, towns, eliteRate, mutationRate, iterationMax,
         # compare the last X values of the best individuals, where X is 
         # controlled by convergenceCriteria. If the best fitnesses hasn't 
         # changed assume converged.
-#        if len(bestIndividuals)>convergenceCriteria:
-#            lastX = bestIndividuals[-convergenceCriteria:]
-#            lastXF = determineFitnesses(population=lastX[:], towns=towns)
-#            if np.sum(lastXF/lastXF[-1]) == convergenceCriteria:
-#                residual = 1
+        if len(bestIndividuals)>convergenceCriteria:
+            lastX = bestIndividuals[-convergenceCriteria:]
+            lastXF = determineFitnesses(population=lastX[:], towns=towns)
+            if np.sum(lastXF/lastXF[-1]) == convergenceCriteria:
+                residual = 1
         if currentBestFitness < globalBestFitness:
             residual = 0
             globalBestFitness = currentBestFitness
@@ -178,7 +178,7 @@ def runGA(population, towns, eliteRate, mutationRate, iterationMax,
     finalFitnesses = determineFitnesses(population=population[:], towns=towns)
     return population, finalFitnesses, bestIndividuals, bestFitnesses
 
-def plotCitiesRoute(towns, individual, colour, figNum):
+def plotCitiesRoute(towns, individual, colour, figNum, route):
     plt.figure(figNum)
     i = 0
     for town in towns:
@@ -188,15 +188,16 @@ def plotCitiesRoute(towns, individual, colour, figNum):
         i += 1
     plt.grid('on')
     plt.axis([0,100,0,100])
-    for i in range(len(individual)):
-        fromTown = individual[i]
-        if i == len(individual)-1:
-            toTown = individual[0]
-        else:
-            toTown = individual[i+1]
-        dx = towns[toTown][0]-towns[fromTown][0]
-        dy = towns[toTown][1]-towns[fromTown][1]
-        plt.arrow(towns[fromTown][0], towns[fromTown][1], dx, dy, color=colour)
+    if route == True:
+        for i in range(len(individual)):
+            fromTown = individual[i]
+            if i == len(individual)-1:
+                toTown = individual[0]
+            else:
+                toTown = individual[i+1]
+            dx = towns[toTown][0]-towns[fromTown][0]
+            dy = towns[toTown][1]-towns[fromTown][1]
+            plt.arrow(towns[fromTown][0], towns[fromTown][1], dx, dy, color=colour)
     
     
     
